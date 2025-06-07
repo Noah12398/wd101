@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Registration Form</h1>
+
+  <form id="registrationForm">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br><br>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br><br>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br><br>
+    
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required>
+    <br><br>
+    
+    <label for="acceptTerms">
+      <input type="checkbox" id="acceptTerms" name="acceptTerms">
+      I accept the terms
+    </label>
+    <br><br>
+    
+    <button type="submit">Submit</button>
+
+  </form>
+
+  <h2>Registered Users</h2>
+  <table id="userTable" border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Dob</th>
+        <th>Accepted terms?</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById("registrationForm");
+    const tableBody = document.getElementById("userTable").getElementsByTagName('tbody')[0];
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const dob = document.getElementById("dob").value;
+      const acceptTerms = document.getElementById("acceptTerms").checked;
+
+      const newRow = tableBody.insertRow();
+
+      newRow.insertCell(0).textContent = name;
+      newRow.insertCell(1).textContent = email;
+      newRow.insertCell(2).textContent = password;
+      newRow.insertCell(3).textContent = dob;
+      newRow.insertCell(4).textContent = acceptTerms ? "true" : "false";
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
